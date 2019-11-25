@@ -1,0 +1,12 @@
+parameter_defaults:
+  ControllerSchedulerHints:
+    'capabilities:node': 'controller-%index%'
+  ComputeHCISchedulerHints:
+    'capabilities:node': 'compute-%index%'
+  HostnameMap:
+    controller-0: controller-0
+    controller-1: controller-1
+    controller-2: controller-2
+    compute-0: hci1
+    compute-1: hci2
+    compute-2: hci3

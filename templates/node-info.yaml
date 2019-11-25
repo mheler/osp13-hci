@@ -1,0 +1,8 @@
+parameter_defaults:
+  ControllerCount: 3
+  ComputeCount: 0
+  ComputeHCICount: 3
+#  OvercloudComputeFlavor: compute
+#  OvercloudComputeHCIFlavor: osdcompute
+  CephAnsibleExtraConfig:
+    is_hci: true

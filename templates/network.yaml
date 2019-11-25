@@ -1,0 +1,47 @@
+resource_registry:
+  OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/templates/nic-configs/controller.yaml
+  OS::TripleO::ComputeHCI::Net::SoftwareConfig: /home/stack/templates/nic-configs/computehci.yaml
+  OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/compute.yaml
+  OS::TripleO::ComputeHCI::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::ComputeHCI::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
+  OS::TripleO::ComputeHCI::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+  OS::TripleO::ComputeHCI::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
+  OS::TripleO::ComputeHCI::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage_mgmt.yaml  
+parameter_defaults:
+  NeutronBridgeMappings: 'datacentre:br-ex,provider:br-provider'
+  NeutronFlatNetworks: 'datacentre,provider'
+  NeutronNetworkVLANRanges: 'datacentre:4000:4001,provider:4000:4001'
+  NeutronNetworkType: 'vxlan,vlan,flat'
+  NeutronTunnelType: 'vxlan'
+  NeutronExternalNetworkBridge: "''"
+
+  # enable isolated metadata agent on controllers
+  # https://access.redhat.com/solutions/2292841
+  # Enable isolated Neutron metadata (allow metadata server in provider networks)
+  NeutronEnableIsolatedMetadata: true
+
+  # Set Jumbo MTU for tenant networks
+  NeutronGlobalPhysnetMtu: 1500
+
+  # DNS
+  DnsServers: ['8.8.8.8', '192.168.0.250']
+  CloudName: overcloud.lab.lan
+  CloudDomain: lab.lan
+
+  # Bonding options
+ # BondInterfaceOvsOptions: 'mode=802.3ad lacp_rate=1 updelay=1000 miimon=100'
+
+  # Global DNS name for instances
+  NeutronDnsDomain: lab.lan
+  NeutronPluginExtensions: "qos,port_security,dns"
+  ControllerExtraConfig:
+    neutron::agents::dhcp::dnsmasq_local_resolv: true
+    neutron::agents::dhcp::enable_isolated_metadata: true
+
+  # External Networking Access - Public API Access
+  ExternalNetCidr: 10.1.2.0/24
+  # Leave room for floating IPs in the External allocation pool (if required)
+  ExternalAllocationPools: [{'start': '10.1.2.20', 'end': '10.1.2.250'}]
+  # Set to the router gateway on the external network
+  ExternalInterfaceDefaultRoute: 10.1.2.1
+  ExternalNetworkVlanID: 12

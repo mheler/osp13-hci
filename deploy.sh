@@ -1,0 +1,20 @@
+openstack overcloud deploy --templates \
+-r ~/templates/roles_data.yaml \
+-n ~/templates/network_data.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml \
+-e ~/templates/scheduler-hints.yaml \
+-e ~/templates/node-info.yaml \
+-e ~/templates/kvm.yaml \
+-e ~/templates/tuning.yaml \
+-e ~/templates/root-password.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/docker-ha.yaml \
+-e ~/templates/overcloud-passwords.yaml \
+-e ~/templates/ceph-custom-config.yaml \
+-e ~/templates/inject-trust-anchor.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-ansible.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-rgw.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/services/octavia.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml \
+-e ~/templates/network.yaml \
+--ntp pool.ntp.org 
