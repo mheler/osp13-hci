@@ -166,9 +166,6 @@ resources:
                     - - ip_netmask: 169.254.169.254/32
                         next_hop:
                           get_param: EC2MetadataIp
-                      - default: true
-                        next_hop:
-                          get_param: ControlPlaneDefaultRoute
               - type: ovs_bridge
                 name: bridge_name
                 dns_servers:
@@ -228,7 +225,7 @@ resources:
                   addresses:
                   - ip_netmask:
                       get_param: ExternalIpSubnet
-                  defroute: true
+#                  defroute: true
                   routes:
                     list_concat_unique:
                       - get_param: ExternalInterfaceRoutes

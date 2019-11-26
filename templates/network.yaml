@@ -2,11 +2,12 @@ resource_registry:
   OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/templates/nic-configs/controller.yaml
   OS::TripleO::ComputeHCI::Net::SoftwareConfig: /home/stack/templates/nic-configs/computehci.yaml
   OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/compute.yaml
-  OS::TripleO::ComputeHCI::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
-  OS::TripleO::ComputeHCI::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
-  OS::TripleO::ComputeHCI::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
-  OS::TripleO::ComputeHCI::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
-  OS::TripleO::ComputeHCI::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage_mgmt.yaml  
+
+#  OS::TripleO::ComputeHCI::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+#  OS::TripleO::ComputeHCI::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
+#  OS::TripleO::ComputeHCI::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+#  OS::TripleO::ComputeHCI::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
+#  OS::TripleO::ComputeHCI::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage_mgmt.yaml  
 parameter_defaults:
   NeutronBridgeMappings: 'datacentre:br-ex,provider:br-provider'
   NeutronFlatNetworks: 'datacentre,provider'
@@ -39,9 +40,9 @@ parameter_defaults:
     neutron::agents::dhcp::enable_isolated_metadata: true
 
   # External Networking Access - Public API Access
-  ExternalNetCidr: 10.1.2.0/24
+  ExternalNetCidr: 10.240.1.0/24
   # Leave room for floating IPs in the External allocation pool (if required)
-  ExternalAllocationPools: [{'start': '10.1.2.20', 'end': '10.1.2.250'}]
+  ExternalAllocationPools: [{'start': '10.240.1.20', 'end': '10.240.1.250'}]
   # Set to the router gateway on the external network
-  ExternalInterfaceDefaultRoute: 10.1.2.1
+  ExternalInterfaceDefaultRoute: 10.240.1.1
   ExternalNetworkVlanID: 12
