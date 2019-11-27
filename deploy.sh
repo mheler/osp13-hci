@@ -14,7 +14,5 @@ openstack overcloud deploy --templates \
 -e ~/templates/inject-trust-anchor.yaml \
 -e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-ansible.yaml \
 -e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-rgw.yaml \
--e /usr/share/openstack-tripleo-heat-templates/environments/services/octavia.yaml \
--e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml \
 -e ~/templates/network.yaml \
 --ntp pool.ntp.org 
